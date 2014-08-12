@@ -58,9 +58,6 @@ public class FXMLController implements Initializable {
     @FXML
     private void handleButtonAction(MouseEvent event) {
        
-        List<String> databaseNames = mongoClient.getDatabaseNames();
-        for(String derp:databaseNames)
-                System.out.println(derp);
 
         BasicDBObject storeInfo = new BasicDBObject();
         DBCollection colls = mongoClient.getDB("project").getCollection("Stores");
