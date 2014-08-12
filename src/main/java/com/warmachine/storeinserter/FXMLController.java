@@ -58,7 +58,6 @@ public class FXMLController implements Initializable {
     @FXML
     private void handleButtonAction(MouseEvent event) {
        
-
         BasicDBObject storeInfo = new BasicDBObject();
         DBCollection colls = mongoClient.getDB("project").getCollection("Stores");
         
