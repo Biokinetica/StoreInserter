@@ -72,9 +72,6 @@ public class FXMLController implements Initializable {
                 .append("Phone", PhoneLine.getText())
                 .append("Contributer", user);
         
-        
-        
-        
         BasicDBObject location = new BasicDBObject("type","Point");
         
         try {
