@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400" minWidth="600" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.warmachine.storeinserter.FXMLController">
+<children><Label layoutX="45.0" layoutY="73.0" text="Database Login" AnchorPane.rightAnchor="453.0" />
+<VBox layoutX="250.0" layoutY="59.0" prefHeight="160.0" prefWidth="275.0" AnchorPane.rightAnchor="75.0">
+<children>
+<TextField fx:id="StoreLine" layoutX="250.0" layoutY="59.0">
+<VBox.margin>
+<Insets bottom="20.0" />
+</VBox.margin>
+</TextField>
+<TextField fx:id="AddrLine" layoutX="250.0" layoutY="104.0">
+<VBox.margin>
+<Insets bottom="20.0" />
+</VBox.margin>
+</TextField>
+<TextField fx:id="CityLine" layoutX="250.0" layoutY="149.0">
+<VBox.margin>
+<Insets bottom="20.0" />
+</VBox.margin>
+</TextField>
+<TextField fx:id="ZipLine" layoutX="250.0" layoutY="194.0">
+<VBox.margin>
+<Insets bottom="20.0" />
+</VBox.margin>
+</TextField>
+<TextField fx:id="PhoneLine" layoutX="10.0" layoutY="10.0" promptText="(555)555-5555" />
+</children>
+</VBox>
+<Label layoutX="202.0" layoutY="242.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Phone" AnchorPane.rightAnchor="352.535400390625" />
+<Label layoutX="222.0" layoutY="196.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Zip" AnchorPane.rightAnchor="352.535400390625" />
+<Label layoutX="217.0" layoutY="153.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="City" AnchorPane.rightAnchor="352.535400390625" />
+<Label layoutX="190.0" layoutY="109.0" minHeight="-Infinity" minWidth="-Infinity" text="Address" AnchorPane.rightAnchor="352.535400390625" />
+<Label layoutX="167.0" layoutY="65.0" minHeight="-Infinity" minWidth="-Infinity" text="Store Name" AnchorPane.rightAnchor="352.535400390625" /><Button fx:id="InsertButton" layoutX="247.0" layoutY="288.0" mnemonicParsing="false" onMouseClicked="#handleButtonAction" prefHeight="25.0" prefWidth="92.0" text="Insert" AnchorPane.rightAnchor="261.0" />
+<VBox layoutX="14.3759765625" layoutY="104.0" AnchorPane.rightAnchor="414.6240234375">
+<children><TextField fx:id="Username" layoutX="14.3759765625" layoutY="104.0" promptText="Username">
+<VBox.margin>
+<Insets bottom="20.0" />
+</VBox.margin>
+<cursor>
+<Cursor fx:constant="NONE" />
+</cursor></TextField><PasswordField fx:id="Password" layoutX="14.751953125" layoutY="155.5" promptText="Password" />
+</children>
+</VBox><Button fx:id="LoginButton" layoutX="69.4794921875" layoutY="211.0" mnemonicParsing="false" onMouseClicked="#handleLogin" text="Login" AnchorPane.rightAnchor="476.5205078125" />
+</children>
+</AnchorPane>
