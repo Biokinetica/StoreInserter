@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.Arrays;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -102,7 +101,6 @@ GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
 
     @FXML
     private void handleLogin(MouseEvent event) {
-        
         
         try {
                 address = new ServerAddress("ec2-54-82-163-131.compute-1.amazonaws.com",27017);
