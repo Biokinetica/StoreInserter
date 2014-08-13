@@ -13,7 +13,7 @@ import com.mongodb.ServerAddress;
 import java.io.IOException;
 import java.net.URL;
 import java.net.UnknownHostException;
-import java.time.LocalTime;
+import java.time.DayOfWeek;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -84,8 +84,16 @@ GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
             
             storeInfo.append("loc", location);
             
+            int time[] = new int[2];
             
-            storeInfo.append("Hours", hours);
+            DayOfWeek[] values = DayOfWeek.values();
+            for(DayOfWeek value : values){
+                System.out.println(value);
+            }
+            
+            
+            // hours.append(, time);
+           // storeInfo.append("Hours", hours);
             
             colls.insert(storeInfo);
             
@@ -98,7 +106,7 @@ GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
             }
             
         } catch (IOException ex) {
-            System.out.println(ex.getCause());
+            System.out.println(ex.getLocalizedMessage());
         }
         
     }
@@ -109,7 +117,7 @@ GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
         try {
                 address = new ServerAddress("ec2-54-82-163-131.compute-1.amazonaws.com",27017);
             } catch (UnknownHostException ex) {
-                System.out.println(ex.getCause());
+                System.out.println(ex.getLocalizedMessage());
             }
             MongoCredential creds = MongoCredential.createMongoCRCredential(Username.getText(), "project", Password.getText().toCharArray());
             mongoClient = new MongoClient(address, Arrays.asList(creds));
