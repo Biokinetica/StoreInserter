@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.time.DayOfWeek;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -84,16 +85,15 @@ GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
             
             storeInfo.append("loc", location);
             
-            int time[] = new int[2];
-            
-            DayOfWeek[] values = DayOfWeek.values();
-            for(DayOfWeek value : values){
-                System.out.println(value);
-            }
-            
-            
-            // hours.append(, time);
-           // storeInfo.append("Hours", hours);
+                hours.append(DayOfWeek.MONDAY.toString(), "test")
+                     .append(DayOfWeek.TUESDAY.toString(), "test")
+                     .append(DayOfWeek.WEDNESDAY.toString(), "test")
+                     .append(DayOfWeek.THURSDAY.toString(), "test")
+                     .append(DayOfWeek.FRIDAY.toString(), "test")
+                     .append(DayOfWeek.SATURDAY.toString(), "test")
+                     .append(DayOfWeek.SUNDAY.toString(), "test");
+          
+            storeInfo.append("Hours", hours);
             
             colls.insert(storeInfo);
             
