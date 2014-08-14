@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.time.DayOfWeek;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -70,7 +69,7 @@ public class FXMLController implements Initializable {
                 .append("Contributor", user);
         
         BasicDBObject location = new BasicDBObject("type","Point");
-        BasicDBObject hours = new BasicDBObject();
+        BasicDBObject hours = new BasicDBObject();       
         try {
             double coordinates[] = new double[2];
             
@@ -84,7 +83,7 @@ GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
             location.append("coordinates", coordinates);
             
             storeInfo.append("loc", location);
-            
+                      
                 hours.append(DayOfWeek.MONDAY.toString(), "test")
                      .append(DayOfWeek.TUESDAY.toString(), "test")
                      .append(DayOfWeek.WEDNESDAY.toString(), "test")
