@@ -13,14 +13,24 @@ import com.mongodb.ServerAddress;
 import java.io.IOException;
 import java.net.URL;
 import java.net.UnknownHostException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 public class FXMLController implements Initializable {
@@ -83,8 +93,14 @@ GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
             location.append("coordinates", coordinates);
             
             storeInfo.append("loc", location);
+            
+            String myDateString = "13:30";
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+            Date date = sdf.parse(myDateString);
+            Calendar cal = GregorianCalendar.getInstance(TimeZone.getTimeZone("EST"));
+            cal.setTime(date);
                       
-                hours.append(DayOfWeek.MONDAY.toString(), "test")
+                hours.append(DayOfWeek.MONDAY.toString(), cal.get(Calendar.HOUR_OF_DAY) +":"+ cal.get(Calendar.MINUTE))
                      .append(DayOfWeek.TUESDAY.toString(), "test")
                      .append(DayOfWeek.WEDNESDAY.toString(), "test")
                      .append(DayOfWeek.THURSDAY.toString(), "test")
@@ -106,6 +122,8 @@ GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
             
         } catch (IOException ex) {
             System.out.println(ex.getLocalizedMessage());
+        } catch (ParseException ex) {
+            Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
@@ -124,5 +142,12 @@ GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
             user = Username.getText();
             Username.clear();
             Password.clear();
+    }
+
+    @FXML
+    private void enterLogin(KeyEvent event) {
+        MouseEvent m = null;
+        if(event.getCode() == KeyCode.ENTER)
+            handleLogin(m);
     }
 }

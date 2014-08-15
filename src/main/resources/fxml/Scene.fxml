@@ -41,7 +41,7 @@
 <children><TextField fx:id="Username" layoutX="14.3759765625" layoutY="104.0" promptText="Username">
 <VBox.margin>
 <Insets bottom="20.0" />
-</VBox.margin></TextField><PasswordField fx:id="Password" layoutX="14.751953125" layoutY="155.5" promptText="Password" />
+</VBox.margin></TextField><PasswordField fx:id="Password" layoutX="14.751953125" layoutY="155.5" onKeyPressed="#enterLogin" promptText="Password" />
 </children>
 </VBox><Button fx:id="LoginButton" layoutX="69.4794921875" layoutY="211.0" mnemonicParsing="false" onMouseClicked="#handleLogin" text="Login" AnchorPane.rightAnchor="476.5205078125" />
 </children>
