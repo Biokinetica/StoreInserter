@@ -78,7 +78,7 @@ public class FXMLController implements Initializable {
     @FXML
     private Button update;
     
-    private BasicDBObject hours, storeInfo;
+    private BasicDBObject storeInfo;
     
    
     @Override
