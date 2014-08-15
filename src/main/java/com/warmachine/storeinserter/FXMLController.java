@@ -15,18 +15,14 @@ import java.net.URL;
 import java.net.UnknownHostException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.TimeZone;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -82,19 +78,19 @@ public class FXMLController implements Initializable {
     @FXML
     private Button update;
     
-    private BasicDBObject hours;
+    private BasicDBObject hours, storeInfo;
     
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        storeInfo = new BasicDBObject();
     }
 
 
     @FXML
     private void handleButtonAction(MouseEvent event) {
        
-        BasicDBObject storeInfo = new BasicDBObject();
+        
         DBCollection colls = mongoClient.getDB("project").getCollection("Stores");
         
         storeInfo.put("Store", StoreLine.getText());
@@ -120,7 +116,7 @@ GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
             
             storeInfo.append("loc", location);
             
-            storeInfo.append("Hours", hours);
+            //storeInfo.append("Hours", hours);
             
             colls.insert(storeInfo);
             
@@ -193,13 +189,12 @@ GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
             checkBoxes.add(friCheck);
             checkBoxes.add(satCheck);
             checkBoxes.add(sunCheck);
-            
-            
-        hours = new BasicDBObject();
         
         for(CheckBox c : checkBoxes)
-            if(c.isSelected())
-        hours.append(c.getText(), timeArray);
+            if(c.isSelected()){
+        storeInfo.remove(c.getText());
+        storeInfo.put(c.getText(), timeArray);
+            }
         
     }
 }
