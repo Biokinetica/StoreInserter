@@ -36,7 +36,7 @@
 <Label layoutX="222.0" layoutY="196.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Zip" AnchorPane.rightAnchor="352.535400390625" />
 <Label layoutX="217.0" layoutY="153.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="City" AnchorPane.rightAnchor="352.535400390625" />
 <Label layoutX="190.0" layoutY="109.0" minHeight="-Infinity" minWidth="-Infinity" text="Address" AnchorPane.rightAnchor="352.535400390625" />
-<Label layoutX="167.0" layoutY="65.0" minHeight="-Infinity" minWidth="-Infinity" text="Store Name" AnchorPane.rightAnchor="352.535400390625" /><Button fx:id="InsertButton" layoutX="247.0" layoutY="288.0" mnemonicParsing="false" onMouseClicked="#handleButtonAction" prefHeight="25.0" prefWidth="92.0" text="Insert" AnchorPane.rightAnchor="261.0" />
+<Label layoutX="167.0" layoutY="65.0" minHeight="-Infinity" minWidth="-Infinity" text="Store Name" AnchorPane.rightAnchor="352.535400390625" /><Button fx:id="InsertButton" layoutX="286.0" layoutY="399.0" mnemonicParsing="false" onMouseClicked="#handleButtonAction" prefHeight="25.0" prefWidth="92.0" text="Insert" AnchorPane.rightAnchor="261.0" />
 <VBox layoutX="14.3759765625" layoutY="104.0" AnchorPane.rightAnchor="414.6240234375">
 <children><TextField fx:id="Username" layoutX="14.3759765625" layoutY="104.0" promptText="Username">
 <VBox.margin>
@@ -44,5 +44,37 @@
 </VBox.margin></TextField><PasswordField fx:id="Password" layoutX="14.751953125" layoutY="155.5" onKeyPressed="#enterLogin" promptText="Password" />
 </children>
 </VBox><Button fx:id="LoginButton" layoutX="69.4794921875" layoutY="211.0" mnemonicParsing="false" onMouseClicked="#handleLogin" text="Login" AnchorPane.rightAnchor="476.5205078125" />
+<HBox layoutX="31.0" layoutY="275.0" AnchorPane.rightAnchor="47.0">
+<children><CheckBox fx:id="monCheck" layoutX="16.0" layoutY="333.0" mnemonicParsing="false" text="Monday" />
+<CheckBox fx:id="tueCheck" layoutX="109.0" layoutY="333.0" mnemonicParsing="false" text="Tuesday" />
+<CheckBox fx:id="wedCheck" layoutX="196.0" layoutY="333.0" mnemonicParsing="false" text="Wednesday" />
+<CheckBox fx:id="thursCheck" layoutX="282.0" layoutY="333.0" mnemonicParsing="false" text="Thursday" />
+<CheckBox fx:id="friCheck" layoutX="238.0" layoutY="10.0" mnemonicParsing="false" text="Friday" />
+<CheckBox fx:id="satCheck" layoutX="394.0" layoutY="10.0" mnemonicParsing="false" text="Saturday" />
+<CheckBox fx:id="sunCheck" layoutX="390.0" layoutY="10.0" mnemonicParsing="false" text="Sunday" />
+</children>
+</HBox>
+<HBox layoutX="174.0" layoutY="314.0" AnchorPane.rightAnchor="174.0">
+<children>
+<HBox layoutX="122.0" layoutY="392.0">
+<children><Label layoutX="24.0" layoutY="395.0" text="Opening Time">
+<padding>
+<Insets top="5.0" />
+</padding></Label><TextField fx:id="openTime" layoutX="124.0" layoutY="390.0" prefHeight="25.0" prefWidth="53.0" promptText="12:00" />
+</children>
+</HBox>
+<HBox layoutX="315.464599609375" layoutY="390.5">
+<children><Label layoutX="315.464599609375" layoutY="397.0" text="Closing Time">
+<padding>
+<Insets top="5.0" />
+</padding></Label>
+<TextField fx:id="closeTime" layoutX="398.5" layoutY="390.5" prefHeight="25.0" prefWidth="53.0" promptText="22:00" />
+</children>
+<padding>
+<Insets left="10.0" />
+</padding>
+</HBox>
+</children>
+</HBox><Button fx:id="update" layoutX="281.2275390625" layoutY="351.5" mnemonicParsing="false" onMouseClicked="#updateTime" text="Update Time" AnchorPane.rightAnchor="256.7724609375" />
 </children>
 </AnchorPane>

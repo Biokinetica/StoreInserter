@@ -16,10 +16,13 @@ import java.net.UnknownHostException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.TimeZone;
 import java.util.logging.Level;
@@ -27,6 +30,7 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -57,6 +61,28 @@ public class FXMLController implements Initializable {
     private MongoClient mongoClient;
     private ServerAddress address;
     private String user;
+    @FXML
+    private CheckBox monCheck;
+    @FXML
+    private CheckBox tueCheck;
+    @FXML
+    private CheckBox wedCheck;
+    @FXML
+    private CheckBox thursCheck;
+    @FXML
+    private CheckBox friCheck;
+    @FXML
+    private CheckBox satCheck;
+    @FXML
+    private CheckBox sunCheck;
+    @FXML
+    private TextField openTime;
+    @FXML
+    private TextField closeTime;
+    @FXML
+    private Button update;
+    
+    private BasicDBObject hours;
     
    
     @Override
@@ -79,7 +105,7 @@ public class FXMLController implements Initializable {
                 .append("Contributor", user);
         
         BasicDBObject location = new BasicDBObject("type","Point");
-        BasicDBObject hours = new BasicDBObject();       
+               
         try {
             double coordinates[] = new double[2];
             
@@ -94,20 +120,6 @@ GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
             
             storeInfo.append("loc", location);
             
-            String myDateString = "13:30";
-            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-            Date date = sdf.parse(myDateString);
-            Calendar cal = GregorianCalendar.getInstance(TimeZone.getTimeZone("EST"));
-            cal.setTime(date);
-                      
-                hours.append(DayOfWeek.MONDAY.toString(), cal.get(Calendar.HOUR_OF_DAY) +":"+ cal.get(Calendar.MINUTE))
-                     .append(DayOfWeek.TUESDAY.toString(), "test")
-                     .append(DayOfWeek.WEDNESDAY.toString(), "test")
-                     .append(DayOfWeek.THURSDAY.toString(), "test")
-                     .append(DayOfWeek.FRIDAY.toString(), "test")
-                     .append(DayOfWeek.SATURDAY.toString(), "test")
-                     .append(DayOfWeek.SUNDAY.toString(), "test");
-          
             storeInfo.append("Hours", hours);
             
             colls.insert(storeInfo);
@@ -122,8 +134,6 @@ GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
             
         } catch (IOException ex) {
             System.out.println(ex.getLocalizedMessage());
-        } catch (ParseException ex) {
-            Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
@@ -149,5 +159,47 @@ GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
         MouseEvent m = null;
         if(event.getCode() == KeyCode.ENTER)
             handleLogin(m);
+    }
+
+    @FXML
+    private void updateTime(MouseEvent event) throws ParseException {
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+            Date open = sdf.parse(openTime.getText());
+            Date close = sdf.parse(closeTime.getText());
+            Calendar OpeningTime = GregorianCalendar.getInstance(TimeZone.getTimeZone("EST"));
+            Calendar ClosingTime = GregorianCalendar.getInstance(TimeZone.getTimeZone("EST"));
+            OpeningTime.setTime(open);
+            ClosingTime.setTime(close);
+            
+            
+            String timeArray[] = new String[2];
+            
+            if(OpeningTime.get(Calendar.MINUTE) == 0)
+            timeArray[0] = OpeningTime.get(Calendar.HOUR_OF_DAY) + ":00";
+            else
+                timeArray[0] = OpeningTime.get(Calendar.HOUR_OF_DAY) + ":" + OpeningTime.get(Calendar.MINUTE);
+            
+            if(ClosingTime.get(Calendar.MINUTE) == 0)
+            timeArray[1] = ClosingTime.get(Calendar.HOUR_OF_DAY) +":00";
+            else
+                timeArray[1] = ClosingTime.get(Calendar.HOUR_OF_DAY) + ":" + ClosingTime.get(Calendar.MINUTE);
+            
+            List<CheckBox> checkBoxes = new ArrayList<>();
+            checkBoxes.add(monCheck);
+            checkBoxes.add(tueCheck);
+            checkBoxes.add(wedCheck);
+            checkBoxes.add(thursCheck);
+            checkBoxes.add(friCheck);
+            checkBoxes.add(satCheck);
+            checkBoxes.add(sunCheck);
+            
+            
+        hours = new BasicDBObject();
+        
+        for(CheckBox c : checkBoxes)
+            if(c.isSelected())
+        hours.append(c.getText(), timeArray);
+        
     }
 }

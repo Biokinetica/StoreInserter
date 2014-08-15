@@ -115,11 +115,5 @@
             <artifactId>geocoder-java</artifactId>
             <version>0.16</version>
         </dependency>
-        <dependency>
-            <groupId>net.sf.sprockets</groupId>
-            <artifactId>sprockets</artifactId>
-            <version>1.5.0</version>
-            <type>jar</type>
-        </dependency>
     </dependencies>
 </project>
