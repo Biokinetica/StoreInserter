@@ -10,6 +10,7 @@ import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
+import com.warmachine.storeinserter.TextFieldLimited.TextFieldLimited;
 import java.io.IOException;
 import java.net.URL;
 import java.net.UnknownHostException;
@@ -72,9 +73,9 @@ public class FXMLController implements Initializable {
     @FXML
     private CheckBox sunCheck;
     @FXML
-    private TextField openTime;
+    private TextFieldLimited openTime;
     @FXML
-    private TextField closeTime;
+    private TextFieldLimited closeTime;
     @FXML
     private Button update;
     
@@ -84,6 +85,8 @@ public class FXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         storeInfo = new BasicDBObject();
+        openTime.setMaxlength(5);
+        closeTime.setMaxlength(5);
     }
 
 
@@ -115,9 +118,7 @@ GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
             location.append("coordinates", coordinates);
             
             storeInfo.append("loc", location);
-            
-            //storeInfo.append("Hours", hours);
-            
+                        
             colls.insert(storeInfo);
             
 
@@ -170,6 +171,8 @@ GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
             
             
             String timeArray[] = new String[2];
+            
+            
             
             if(OpeningTime.get(Calendar.MINUTE) == 0)
             timeArray[0] = OpeningTime.get(Calendar.HOUR_OF_DAY) + ":00";
