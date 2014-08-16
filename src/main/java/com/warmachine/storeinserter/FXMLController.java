@@ -172,17 +172,25 @@ GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
             
             String timeArray[] = new String[2];
             
+            if(OpeningTime.get(Calendar.HOUR_OF_DAY) == 0)
+                timeArray[0] = "00:";
+            else
+                timeArray[0] = OpeningTime.get(Calendar.HOUR_OF_DAY) + ":";
             
+            if(ClosingTime.get(Calendar.HOUR_OF_DAY) == 0)
+                timeArray[1] = "00:";
+            else
+                timeArray[1] = ClosingTime.get(Calendar.HOUR_OF_DAY) + ":";
             
             if(OpeningTime.get(Calendar.MINUTE) == 0)
-            timeArray[0] = OpeningTime.get(Calendar.HOUR_OF_DAY) + ":00";
+            timeArray[0] += "00";
             else
-                timeArray[0] = OpeningTime.get(Calendar.HOUR_OF_DAY) + ":" + OpeningTime.get(Calendar.MINUTE);
+                timeArray[0] += OpeningTime.get(Calendar.MINUTE);
             
             if(ClosingTime.get(Calendar.MINUTE) == 0)
-            timeArray[1] = ClosingTime.get(Calendar.HOUR_OF_DAY) +":00";
+            timeArray[1] += "00";
             else
-                timeArray[1] = ClosingTime.get(Calendar.HOUR_OF_DAY) + ":" + ClosingTime.get(Calendar.MINUTE);
+                timeArray[1] += ClosingTime.get(Calendar.MINUTE);
             
             List<CheckBox> checkBoxes = new ArrayList<>();
             checkBoxes.add(monCheck);
