@@ -120,6 +120,7 @@ GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
             storeInfo.append("loc", location);
                         
             colls.insert(storeInfo);
+            storeInfo.clear();
             
 
             for (GeocoderResult e : geocoderResponse.getResults()){
@@ -160,18 +161,20 @@ GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
 
     @FXML
     private void updateTime(MouseEvent event) throws ParseException {
-        
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        /*
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");   
             Date open = sdf.parse(openTime.getText());
             Date close = sdf.parse(closeTime.getText());
             Calendar OpeningTime = GregorianCalendar.getInstance(TimeZone.getTimeZone("EST"));
             Calendar ClosingTime = GregorianCalendar.getInstance(TimeZone.getTimeZone("EST"));
             OpeningTime.setTime(open);
             ClosingTime.setTime(close);
-            
+            */
             
             String timeArray[] = new String[2];
-            
+            timeArray[0] = openTime.getText();
+            timeArray[1] = closeTime.getText();
+           /* 
             if(OpeningTime.get(Calendar.HOUR_OF_DAY) == 0)
                 timeArray[0] = "00:";
             else
@@ -190,7 +193,7 @@ GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
             if(ClosingTime.get(Calendar.MINUTE) == 0)
             timeArray[1] += "00";
             else
-                timeArray[1] += ClosingTime.get(Calendar.MINUTE);
+                timeArray[1] += ClosingTime.get(Calendar.MINUTE); */
             
             List<CheckBox> checkBoxes = new ArrayList<>();
             checkBoxes.add(monCheck);
