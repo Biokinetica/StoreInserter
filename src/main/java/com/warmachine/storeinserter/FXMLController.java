@@ -89,7 +89,7 @@ public class FXMLController implements Initializable {
     private void handleButtonAction(MouseEvent event) {
        
         
-        DBCollection colls = mongoClient.getDB("project").getCollection("Stores");
+        DBCollection colls = mongoClient.getDB("warmachine1").getCollection("Stores");
         
         storeInfo.put("Store", StoreLine.getText());
         storeInfo.append("Address", AddrLine.getText())
@@ -135,11 +135,11 @@ GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
     private void handleLogin(MouseEvent event) {
         
         try {
-                address = new ServerAddress("ec2-54-82-163-131.compute-1.amazonaws.com",27017);
+                address = new ServerAddress("ds049858.mongolab.com",49858);
             } catch (UnknownHostException ex) {
                 System.out.println(ex.getLocalizedMessage());
             }
-            MongoCredential creds = MongoCredential.createMongoCRCredential(Username.getText(), "project", Password.getText().toCharArray());
+            MongoCredential creds = MongoCredential.createMongoCRCredential(Username.getText(), "warmachine1", Password.getText().toCharArray());
             mongoClient = new MongoClient(address, Arrays.asList(creds));
             
             user = Username.getText();
