@@ -87,10 +87,10 @@ public class FXMLController implements Initializable {
 
     @FXML
     private void handleButtonAction(MouseEvent event) {
-       
+
         
         DBCollection colls = mongoClient.getDB("warmachine1").getCollection("Stores");
-        
+
         storeInfo.put("Store", StoreLine.getText());
         storeInfo.append("Address", AddrLine.getText())
                 .append("City", CityLine.getText())
@@ -113,10 +113,9 @@ GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
             location.append("coordinates", coordinates);
             
             storeInfo.append("loc", location);
-                        
+
             colls.insert(storeInfo);
             storeInfo.clear();
-            
 
             for (GeocoderResult e : geocoderResponse.getResults()){
                 
